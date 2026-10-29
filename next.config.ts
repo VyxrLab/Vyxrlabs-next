@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
       { source: "/contacts", destination: "/contact", permanent: true },
       { source: "/Contacts", destination: "/contact", permanent: true },
       { source: "/abouts", destination: "/#about", permanent: true },
+      // Pages the previous site had that this one doesn't.
+      { source: "/careers", destination: "/contact", permanent: true },
+      { source: "/blogs", destination: "/", permanent: true },
+      { source: "/blogs/:slug*", destination: "/", permanent: true },
     ];
   },
 };
