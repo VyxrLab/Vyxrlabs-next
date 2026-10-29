@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { siteUrl } from "@/lib/site";
+import Analytics from "./components/layout/Analytics";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
@@ -25,6 +27,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "VyxrLabs | Custom software, automation & AI for growing businesses",
     template: "%s | VyxrLabs",
@@ -35,6 +38,8 @@ export const metadata: Metadata = {
     siteName: "VyxrLabs",
     type: "website",
   },
+  // Keeps the domain verified in Google Search Console (same token the previous site used).
+  verification: { google: "rW5_8T3JxKLaBbBF892qMASoVCUM-Q3MMBrdmUdxUUk" },
 };
 
 export const viewport: Viewport = {
@@ -45,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${archivo.variable} ${playfair.variable} ${geistMono.variable}`}>
       <body className="grain">
+        <Analytics />
         <a
           href="#main"
           data-transition="off"

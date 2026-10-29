@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Tell VyxrLabs how your business runs today. Message us on WhatsApp, email support@vyxrlabs.com, or send a project brief.",
+  alternates: { canonical: "/contact" },
 };
 
 const channels: { label: string; value: string; href: string; icon: IconType; external?: boolean }[] = [

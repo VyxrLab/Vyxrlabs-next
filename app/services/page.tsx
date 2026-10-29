@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Custom solutions and products, business automation, custom SaaS platforms and custom AI, built around how your business runs.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

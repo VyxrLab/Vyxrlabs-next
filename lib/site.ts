@@ -1,5 +1,8 @@
 // Single source of truth for site copy, contact details and navigation.
 
+/** The live address; canonical URLs, the sitemap and robots.txt are built from it. */
+export const siteUrl = "https://vyxrlabs.com";
+
 export const contact = {
   whatsappDisplay: "+971 56 645 7591",
   whatsappNumber: "971566457591",
