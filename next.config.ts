@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: [
-      "cdn.jsdelivr.net",
-      "static.wixstatic.com",
-    ],
+    remotePatterns: [new URL("https://cdn.jsdelivr.net/gh/VyxrLab/**")],
+  },
+  async redirects() {
+    return [
+      // Old routes that were linked from the previous design.
+      { source: "/Service", destination: "/services", permanent: true },
+      { source: "/service/:path*", destination: "/services", permanent: true },
+      { source: "/contacts", destination: "/contact", permanent: true },
+      { source: "/Contacts", destination: "/contact", permanent: true },
+      { source: "/abouts", destination: "/#about", permanent: true },
+    ];
   },
 };
 
