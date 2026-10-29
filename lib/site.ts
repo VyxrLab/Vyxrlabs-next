@@ -191,7 +191,7 @@ export const testimonials: Testimonial[] = [
     pull: "They just took care of us.",
     quote:
       "I've had nothing but positive things to say about VyxrLabs. Phenomenal at helping us bring an idea back to life and overcoming some of the challenges we were not aware of. They just took care of us. It was fantastic to work with them. The communication made it very easy to work with them. Great people to work with, I would highly recommend VyxrLabs.",
-    video: "https://video.wixstatic.com/video/0d9155_4cd1ef1f917b4732a4a9fc5d39c15031/480p/mp4/file.mp4",
+    video: "https://cdn.jsdelivr.net/gh/VyxrLab/media-storage/vyxreact/vedios/jesse-rooney.mp4",
     poster: "/testimonials/jesse.webp",
     aspect: 480 / 848,
     fit: "cover",
@@ -202,7 +202,7 @@ export const testimonials: Testimonial[] = [
     pull: "Always coming up with solutions to the problems we faced.",
     quote:
       "It's been an absolute pleasure. VyxrLabs is very reliable, works on time, is very responsive and is willing to get projects across the line in a timely manner. They're always coming up with solutions to the problems we faced. We've managed to be a lot more productive because of their involvement with us. Thanks a lot VyxrLabs, it's been a pleasure.",
-    video: "https://video.wixstatic.com/video/0d9155_9f0ba9d62bf74e07933437ad5c900cef/360p/mp4/file.mp4",
+    video: "https://cdn.jsdelivr.net/gh/VyxrLab/media-storage/vyxreact/vedios/mathew-wainwright.mp4",
     poster: "/testimonials/mathew.webp",
     aspect: 576 / 360,
     fit: "contain",
