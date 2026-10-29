@@ -1,89 +1,143 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+  VyxrLabs design tokens.
+  One loud thing (the particle hero); everything else is quiet, wide, light type on deep blue-black.
+  Blue (signal) is reserved for live/interactive things and the particles.
+*/
 @theme inline {
+  --color-ink: #03050c;
+  --color-ink-2: #080c1a;
+  --color-ink-3: #0e1428;
+  --color-line: rgb(160 178 255 / 0.14);
+  --color-fg: #edf0ff;
+  --color-muted: #8c94b8;
+  --color-signal: #506dfe;
+  --color-signal-hi: #9db0ff;
+  --color-whatsapp: #25d366;
 
-  --font-inter: "Inter", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-playfair: "Playfair Display", serif;
-  --color-bgreen: #5E8E3E;
-  --color-cblue: #506dfe;
-  --color-skygreen: #E5FFFD;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-35px); }
-  }
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-  @keyframes fade-up {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes rainbowFlow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-  }
-  @keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0; }
-  }
-  
-  /* Custom animation variables */
-  --animate-float: float 3s ease-in-out infinite;
-  --animate-float-slow: float-slow 6s ease-in-out infinite;
-  --animate-fade-up: fade-up 0.8s ease-out forwards;
-  --animate-slide: slide 40s linear infinite;
-  --animate-scroll: scroll 50s linear infinite;
-  --animate-flow: rainbowFlow 2s linear infinite;
-  --animate-flicker: flicker 2s infinite;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* **Breakpoint variables** */
-  --breakpoint-xs: 320px;
-  --breakpoint-sm: 480px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1440px;
-  --breakpoint-2xl: 1920px;
-  --breakpoint-4k: 2560px;
-
-  /* You can also define group-level breakpoints like "mobiles" and "desktops" */
-  --breakpoint-mobiles: 640px;
-  --breakpoint-desktop: 1024px;
-  --breakpoint-desktops: 768px;
-
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scroll-cue {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  --animate-fade-in: fade-in 0.6s var(--ease-out-expo);
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-scroll-cue: scroll-cue 2.4s var(--ease-out-expo) infinite;
 }
 
-/* General Styling */
-.badge    {  @apply inline-block px-6 md:px-7 py-0 md:py-0.5 border-2 rounded-full font-normal md:text-lg text-bgreen border-bgreen font-inter; }
-.heading  {  @apply text-2xl md:text-5xl mt-3 md:mt-6 font-bold leading-tight font-montserrat; }
-.head     {  @apply text-lg md:text-5xl my-2 md:my-6 font-bold leading-tight font-montserrat; }
-.heading1 {  @apply text-[50px] font-bold leading-none font-montserrat; }
-.sheading1 {  @apply text-[35px] font-bold leading-none font-montserrat; }
-.heading2 {  @apply text-[33px] font-bold leading-snug font-inter; }
-.heading3 {  @apply text-[26px] font-bold leading-snug font-inter; }
-.desc     {  @apply text-[24px] leading-snug; }
-.desc1    {  @apply text-[22px] font-inter font-semibold}
-.ctabtn   {  @apply inline-flex items-center gap-3 bg-linear-to-b from-indigo-900 to-cblue rounded-lg px-9 py-3 text-white font-semibold transition-transform duration-200 hover:scale-102 hover:from-blue-400 hover:to-indigo-800 }
-.divider  {  @apply animate-flow w-full mx-auto h-[2px] border-none bg-linear-to-r from-rose-500 via-indigo-700 to-lime-500 }
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-ink);
+    /* Inherited, so every scrollbar on the site uses the line colour on a clear track. */
+    scrollbar-color: rgb(160 178 255 / 0.28) transparent;
+  }
+  body {
+    @apply bg-ink text-fg font-sans antialiased;
+    font-stretch: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal-hi);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  /* Lenis smooth scroll */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+  .lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+}
 
+@layer components {
+  /* Wide, light display type that echoes the thin geometric wordmark. */
+  .display {
+    font-stretch: 122%;
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .display-tight {
+    font-stretch: 112%;
+    font-weight: 350;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+  /* The brand's italic serif accent, used only on a handful of approved words. */
+  .accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-stretch: 100%;
+    letter-spacing: -0.01em;
+    color: var(--color-signal-hi);
+  }
+  .eyebrow {
+    @apply font-mono text-xs text-muted;
+    letter-spacing: 0.02em;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10;
+  }
+  /* Slim scrollbar for panels that scroll inside the page (the product sheet). */
+  .scroll-thin {
+    scrollbar-width: thin;
+  }
 
-a {   @apply no-underline; }
-em {  @apply italic font-bold font-playfair text-cblue tracking-[0.03rem]; }
-a {   @apply no-underline; }
-em {  @apply italic font-bold font-playfair text-cblue tracking-[0.03rem]; }
+  .btn-primary,
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium
+      transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply bg-signal text-white hover:bg-[#6a83ff];
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12) inset, 0 10px 40px -10px rgb(80 109 254 / 0.7);
+  }
+  .btn-ghost {
+    @apply border border-line text-fg hover:border-signal-hi/50 hover:bg-white/[0.03];
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line bg-ink px-4 py-3 text-fg placeholder:text-muted/60
+      transition-colors focus:border-signal-hi/60 focus:outline-none;
+  }
+
+  /* Film grain overlay */
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

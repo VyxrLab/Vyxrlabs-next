@@ -1,12 +1,23 @@
-// app/page.tsx
-import Hero from "./components/Hero"
-import Features from "./components/OurExpertise"
+import Hero from "./components/hero/Hero";
+import LogoMarquee from "./components/home/LogoMarquee";
+import Statement from "./components/home/Statement";
+import ServicesList from "./components/home/ServicesList";
+import About from "./components/home/About";
+import BlackSwan from "./components/work/BlackSwan";
+import Testimonials from "./components/testimonials/Testimonials";
+import CtaBand from "./components/sections/CtaBand";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <>
       <Hero />
-      <Features />
-    </main>
-  )
+      <LogoMarquee />
+      <Statement />
+      <ServicesList />
+      <BlackSwan />
+      <Testimonials />
+      <About />
+      <CtaBand />
+    </>
+  );
 }
