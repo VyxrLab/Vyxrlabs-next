@@ -15,6 +15,8 @@ export function jumpTo(target: string | number) {
   const el = typeof target === "string" ? document.getElementById(target.replace(/^#/, "")) : null;
   const y = typeof target === "number" ? target : 0;
   if (lenisInstance) {
+    // After a page change Lenis still holds the previous page's height, which would cap the jump.
+    lenisInstance.resize();
     lenisInstance.scrollTo(el ?? y, { offset: el ? -24 : 0, immediate: true, force: true });
     return;
   }
